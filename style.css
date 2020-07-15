@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400&display=swap');  
+
+body {
+    background-color: rgb(58, 126, 153);
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+#quiz-questions {
+    text-align: center;
+}
+
+#timer {
+    text-align: center;
+    border-color: blue;
+}
