@@ -20,28 +20,45 @@
     </header>
     <br>
 
-    <main class="containter">
-        <!-- row for buttons -->
+    <main class="container button-row">
+        <!-- Row for buttons to start, see high score and for timer-->
         <div class="row">
             <div class="col-lg-4">
-                <button id="start-button">Start Quiz</button>
+                <button class="hide" id="start-button">Start Quiz</button>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 btn">
                 <p>Seconds Left</p>
-                <div type="number" id="timer">60</div>
+                <div type="number" id="timer"></div>
             </div>
             <div class="col-lg-4">
                 <button id="button-high-scores">High Scores</button>
             </div>
         </div>
-
+        <!-- Container for the questions to ask with hide/show when click start -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-4"></div>
 
-                <div class="col-lg-4" id="quiz-questions">Quiz Questions will Appear in this Area</div>
-                <ol>
-                </ol>
+                <div class="col-lg-4 hide" id="quiz-questions">Quiz Questions will Appear in this Area</div>
+
+                <div class="container" id="answers-list">
+                    <ul class="px-0 py-0 nobullets answer-button hide">
+                        <li type="button" class="btn btn-light answer-button-0">
+                            <span class="answer-0"></span>
+                        </li>
+                        <li type="button" class="btn btn-light answer-button-1">
+                            <span class="answer-1"></span>
+                        </li>
+                        <li type="button" class="btn btn-light answer-button-2">
+                            <span class="answer-2"></span>
+                        </li>
+
+                        <li type="button" class="btn btn-light answer-button-3">
+                            <span class="answer-3"></span>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="col-lg-4"></div>
             </div>
         </div>

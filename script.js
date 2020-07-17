@@ -1,69 +1,94 @@
 // STEPS FOR JS FILE
 
 // set variables for time : let timeEl = 
-let timeEl = document.querySelector("#timer");
-let startQuiz = document.querySelector("#start-button");
-let highScoreButton = document.querySelector("#button-high-score");
+const timeEl = document.querySelector("#timer");
+let startButton = document.querySelector("#start-button");
+const highScoreButton = document.querySelector("#button-high-score");
 let userInitials = document.querySelector("#user-initials");
 let questionToAsk = document.querySelector("#quiz-questions");
-let finalMessage = document.querySelector("#final-message")
+let answerButtonEl = document.querySelector("#answer-button");
+const finalMessage = document.querySelector("#final-message");
+let currentQuestionIndex;
+let currentQuestion;
 
 let startTime = 45;
 // Quiz questions taken from: https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 let quizQuestions = [
     {question: "Inside which HTML element do we put the JavaScript?", 
-      choice1: "<script>",
-      choice2: "<javascript>",
-      choice3: "<js>",
-      choice4: "<scripting"
-    },
+      answers: ["<script>", "<javascript>", "<js>", "<scripting>"] 
+    }
 
-    {question: "Where is the correct place to insert a JavaScript?", 
-      choice1: "the <head> section",
-      choice2: "the <body> section",
-      choice3: "the <mid> section",
-      choice4: "either the <head> or the <body> section"
-    },
-    {question: "How do you write 'Hello World' in an alert box?", 
-      choice1: "alertBox('Hello World')",
-      choice2: "msgBox('Hello World')",
-      choice3: "alert('Hello World')",
-      choice4: "msg('Hello World')"
-    },
-    {question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?", 
-      choice1: "if(i!=5)",
-      choice2: "if(i<>5)",
-      choice3: "if i<>5",
-      choice4: "if i=!5 then)"
-    },
+    // {question: "Where is the correct place to insert a JavaScript?", 
+    //   choice1: "the <head> section",
+    //   choice2: "the <body> section",
+    //   choice3: "the <mid> section",
+    //   choice4: "either the <head> or the <body> section"
+    // },
+    // {question: "How do you write 'Hello World' in an alert box?", 
+    //   choice1: "alertBox('Hello World')",
+    //   choice2: "msgBox('Hello World')",
+    //   choice3: "alert('Hello World')",
+    //   choice4: "msg('Hello World')"
+    // },
+    // {question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?", 
+    //   choice1: "if(i!=5)",
+    //   choice2: "if(i<>5)",
+    //   choice3: "if i<>5",
+    //   choice4: "if i=!5 then)"
+    // },
     
     ];
 
 let answerKey = ["a", "b", "c", "a"];
 
-startQuiz.addEventListener("click", function(){
-    for (i=0; i<quizQuestions.length; i++) {
-        questionToAsk = quizQuestions[i].question;
-        
-    }    
-    for (j=0; j< answerKey.lenth; j++) {
-        answerKey = answerKey[j];
-    }
-    startTimer();
+
+startButton.addEventListener("click", startQuiz);
 
 
-})
-function startTimer() {
-    timeEl.innerHTML = startTime;
-    console.log(timeEl);
-    if (timeEl > 0) {
-        timeEl--;
-    }
-    else {
-        console.log(startTime);
-        console.log("Time's up!");
-    }
+
+function startQuiz (){
+console.log("Started");
+startButton.classList.add("hide");
+questionToAsk.classList.remove("hide");
+answerButtonEl.classList.remove("hide");
+currentQuestionIndex = 0;
+setNextQuestion();
+console.log(currentQuestionIndex);
+console.log(quizQuestions[currentQuestionIndex].question);
 }
+
+function setNextQuestion() {
+    showQuestion(quizQuestions[currentQuestionIndex].question);
+
+}
+
+function showQuestion(question) {
+    questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
+    answerButtonEl.innerHTML = quizQuestions[currentQuestionIndex].answers;
+}
+ 
+
+
+
+// function setNextQuestion (){
+
+
+
+
+// }
+
+
+// function startTimer() {
+//     timeEl.innerHTML = startTime;
+//     console.log(timeEl);
+//     if (timeEl > 0) {
+//         timeEl--;
+//     }
+//     else {
+//         console.log(startTime);
+//         console.log("Time's up!");
+//     }
+// }
 
 // highScoreButton.addEventListener("click", function() {
 //     if (timeEl.innerHTML) {
