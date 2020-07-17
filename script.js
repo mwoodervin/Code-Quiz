@@ -6,7 +6,7 @@ let startButton = document.querySelector("#start-button");
 const highScoreButton = document.querySelector("#button-high-score");
 let userInitials = document.querySelector("#user-initials");
 let questionToAsk = document.querySelector("#quiz-questions");
-let answerButtonEl = document.querySelector("#answer-button");
+let answerButtonEl = document.querySelector(".answer-button");
 const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
@@ -50,6 +50,7 @@ function startQuiz (){
 console.log("Started");
 startButton.classList.add("hide");
 questionToAsk.classList.remove("hide");
+console.log(answerButtonEl);
 answerButtonEl.classList.remove("hide");
 currentQuestionIndex = 0;
 setNextQuestion();
