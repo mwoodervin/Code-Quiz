@@ -32,3 +32,7 @@ ul.answer-button {
 li.btn-light {
     background-color: rgb(164, 164, 197);
 }
+
+.hide {
+    visibility: hidden;
+}

@@ -7,6 +7,7 @@ const highScoreButton = document.querySelector("#button-high-score");
 let userInitials = document.querySelector("#user-initials");
 let questionToAsk = document.querySelector("#quiz-questions");
 let answerButtonEl = document.querySelector(".answer-button");
+let answerChoices = document.querySelectorAll(".answer");
 const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
@@ -15,7 +16,8 @@ let startTime = 45;
 // Quiz questions taken from: https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 let quizQuestions = [
     {question: "Inside which HTML element do we put the JavaScript?", 
-      answers: ["<script>", "<javascript>", "<js>", "<scripting>"] 
+      answers: ["<script>", "<javascript>", "<js>", "<scripting>"], 
+      correctAnswer: "<script>"      
     }
 
     // {question: "Where is the correct place to insert a JavaScript?", 
@@ -43,7 +45,13 @@ let answerKey = ["a", "b", "c", "a"];
 
 
 startButton.addEventListener("click", startQuiz);
+for(i=0; i<answerChoices.length; i++) {
+    answerChoices[i].addEventListener("click", checkAnswer);
+}
+function checkAnswer(event) {
+    console.log(event.target.textContent);
 
+}
 
 
 function startQuiz (){
@@ -65,7 +73,11 @@ function setNextQuestion() {
 
 function showQuestion(question) {
     questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
-    answerButtonEl.innerHTML = quizQuestions[currentQuestionIndex].answers;
+    console.log(answerButtonEl.children.length);
+    for(i=0; i<answerButtonEl.children.length; i++) {
+    answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
+}
+
 }
  
 
@@ -79,16 +91,15 @@ function showQuestion(question) {
 // }
 
 
-// function startTimer() {
-//     timeEl.innerHTML = startTime;
-//     console.log(timeEl);
-//     if (timeEl > 0) {
-//         timeEl--;
-//     }
-//     else {
-//         console.log(startTime);
-//         console.log("Time's up!");
-//     }
+// function runTimer() {
+//     var newYearCountdown = setInterval(function(){
+//         console.log(counter);
+//         counter--
+//         if (counter === 0) {
+//           console.log("HAPPY NEW YEAR!!");
+//           clearInterval(newYearCountdown);
+//         }
+//       }, 1000);
 // }
 
 // highScoreButton.addEventListener("click", function() {
