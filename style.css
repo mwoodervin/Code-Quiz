@@ -17,3 +17,18 @@ header {
     text-align: center;
     border-color: blue;
 }
+
+.button-row {
+    text-align: center;
+}
+
+#answers-list {
+    text-align: center;
+}
+ul.answer-button {
+    height: 20px;
+    width: 40px;
+}
+li.btn-light {
+    background-color: rgb(164, 164, 197);
+}
