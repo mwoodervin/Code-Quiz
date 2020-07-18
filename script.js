@@ -64,6 +64,8 @@ currentQuestionIndex = 0;
 setNextQuestion();
 console.log(currentQuestionIndex);
 console.log(quizQuestions[currentQuestionIndex].question);
+runTimer();
+
 }
 
 function setNextQuestion() {
@@ -91,16 +93,15 @@ function showQuestion(question) {
 // }
 
 
-// function runTimer() {
-//     var newYearCountdown = setInterval(function(){
-//         console.log(counter);
-//         counter--
-//         if (counter === 0) {
-//           console.log("HAPPY NEW YEAR!!");
-//           clearInterval(newYearCountdown);
-//         }
-//       }, 1000);
-// }
+function runTimer() {
+    var startTimer = setInterval(function(){
+        startTime--
+        if (startTime === 0) {
+          alert("Time's up!");
+          clearInterval(startTimer);
+        }
+      }, 1000);
+}
 
 // highScoreButton.addEventListener("click", function() {
 //     if (timeEl.innerHTML) {
@@ -122,7 +123,6 @@ function showQuestion(question) {
     // answer 2
     // answer 3
     // answer 4 
-    // answer 5
 
 // Object to compare quiz answer with user answer (true/false)
 
