@@ -1,6 +1,5 @@
-// STEPS FOR JS FILE
 
-// set variables for time : let timeEl = 
+// set global variables
 let timeEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-button");
 const highScoreButton = document.querySelector("#button-high-score");
@@ -11,8 +10,10 @@ let answerChoices = document.querySelectorAll(".answer");
 const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
+let userScore;
 
-let startTime = 60;
+let timeLeft = 60;
+let startTimer;
 
 
 // Quiz questions taken from: https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
@@ -44,8 +45,6 @@ let quizQuestions = [
 
 ];
 
-let answerKey = ["a", "b", "c", "a"];
-
 // event listener for start button
 startButton.addEventListener("click", startQuiz);
 
@@ -54,7 +53,34 @@ for (i = 0; i < answerChoices.length; i++) {
     answerChoices[i].addEventListener("click", checkAnswer);
 }
 
+// Start the Quiz
+function startQuiz() {
+    startButton.classList.add("hide");
+    questionToAsk.classList.remove("hide");
+    answerButtonEl.classList.remove("hide");
+    currentQuestionIndex = 0;
+    setFirstQuestion();
+    console.log(quizQuestions[currentQuestionIndex].question);
+    timeEl.innerHTML = timeLeft;
+    runTimer();
 
+}
+
+// Set the first question
+function setFirstQuestion() {
+    showQuestion(quizQuestions[currentQuestionIndex].question);
+
+}
+
+// Show a question
+function showQuestion(question) {
+    questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
+    for (i = 0; i < answerButtonEl.children.length; i++) {
+        answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
+    }
+}
+
+// Check Answers
 function checkAnswer(event) {
     console.log(event.target.textContent);
     console.log(quizQuestions[currentQuestionIndex].correctAnswer);
@@ -65,47 +91,14 @@ function checkAnswer(event) {
     }
     else {
         console.log("Nope!");
-        startTime = startTime - 10;
+        timeLeft = timeLeft - 10;
         setNextQuestion();
-
     }
 }
 
-
-function startQuiz() {
-    console.log("Started");
-    startButton.classList.add("hide");
-    questionToAsk.classList.remove("hide");
-    console.log(answerButtonEl);
-    answerButtonEl.classList.remove("hide");
-    currentQuestionIndex = 0;
-    setFirstQuestion();
-    console.log(currentQuestionIndex);
-    console.log(quizQuestions[currentQuestionIndex].question);
-    timeEl.innerHTML = startTime;
-    runTimer();
-
-}
-
-function setFirstQuestion() {
-    showQuestion(quizQuestions[currentQuestionIndex].question);
-
-}
-
-function showQuestion(question) {
-    questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
-    console.log(answerButtonEl.children.length);
-    for (i = 0; i < answerButtonEl.children.length; i++) {
-        answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
-    }
-
-}
-
-
-
-
+// Set the next question
 function setNextQuestion() {
-    if (currentQuestionIndex < (quizQuestions.length - 1) && startTime > 0) {
+    if (currentQuestionIndex < (quizQuestions.length - 1)) {
         currentQuestionIndex++;
         showQuestion(quizQuestions[currentQuestionIndex].question);
 
@@ -114,27 +107,28 @@ function setNextQuestion() {
         finalMessage.classList.remove("hide");
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
+        clearInterval(startTimer);
     }
 }
 
-
+// Timer function
 function runTimer() {
-    var startTimer = setInterval(function () {
-        startTime--
-        timeEl.innerHTML = startTime;
-        if (startTime === 0) {
-            finalMessage.classList.remove("hide");
+    startTimer = setInterval(function() {
+        timeLeft--
+        timeEl.innerHTML = timeLeft;
+        if (timeLeft === 0 || currentQuestionIndex === (quizQuestions.length)) { 
             questionToAsk.classList.add("hide");
             answerButtonEl.classList.add("hide");
             clearInterval(startTimer);
+            userScore.textContent = timeLeft;
+            console.log(userScore.textContent);
+
         }
     }, 1000);
 }
 
 // highScoreButton.addEventListener("click", function() {
-//     if (timeEl.innerHTML) {
-//       mode = "light";
-//       container.setAttribute("class", "light");
+//     if (timeEl.innerHTML > the current high score) {
 //     }
 
 //score
