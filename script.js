@@ -49,15 +49,18 @@ for(i=0; i<answerChoices.length; i++) {
 }
 
 
-// function checkAnswer(event) {
-//     console.log(event.target.textContent);
+function checkAnswer(event) {
+    console.log(event.target.textContent);
+    console.log(quizQuestions[currentQuestionIndex].correctAnswer);
 
-//     if (event.target.textContent ===quizQuestions.correctAnswer[i].correctAnswer) {
-//         console.log("Correct!");
-//     }
-//     else {console.log("Nope!");
-//     }
-// }
+    if (event.target.textContent ===quizQuestions[currentQuestionIndex].correctAnswer) {
+        console.log("Correct!");
+    }
+    else {console.log("Nope!");
+    startTime = startTime - 10;
+
+    }
+}
 
 
 function startQuiz (){
@@ -101,6 +104,7 @@ function showQuestion(question) {
 
 function runTimer() {
     var startTimer = setInterval(function(){
+        console.log(startTime);
         startTime--
         if (startTime === 0) {
           alert("Time's up!");
