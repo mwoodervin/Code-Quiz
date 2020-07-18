@@ -16,42 +16,48 @@ let startTime = 45;
 // Quiz questions taken from: https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 let quizQuestions = [
     {question: "Inside which HTML element do we put the JavaScript?", 
-      answers: ["<script>", "<javascript>", "<js>", "<scripting>"], 
-      correctAnswer: "<script>"      
-    }
+    answers: ["<script>", "<javascript>", "<js>", "<scripting>"], 
+    correctAnswer: "<script>"      
+    },
 
-    // {question: "Where is the correct place to insert a JavaScript?", 
-    //   choice1: "the <head> section",
-    //   choice2: "the <body> section",
-    //   choice3: "the <mid> section",
-    //   choice4: "either the <head> or the <body> section"
-    // },
-    // {question: "How do you write 'Hello World' in an alert box?", 
-    //   choice1: "alertBox('Hello World')",
-    //   choice2: "msgBox('Hello World')",
-    //   choice3: "alert('Hello World')",
-    //   choice4: "msg('Hello World')"
-    // },
-    // {question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?", 
-    //   choice1: "if(i!=5)",
-    //   choice2: "if(i<>5)",
-    //   choice3: "if i<>5",
-    //   choice4: "if i=!5 then)"
-    // },
+    {question: "Where is the correct place to insert a JavaScript?", 
+    answers: ["the <head> section", "the <body> section", "the <mid> section",  "either the <head> or the <body> section"], 
+    correctAnswer: "the <body> section" 
+    },
+
+    {question: "How do you write 'Hello World' in an alert box?", 
+    answers: ["alertBox('Hello World')","msgBox('Hello World')", "alert('Hello World')", "msg('Hello World')"],
+    correctAnswer: "alert('Hello World')"
+    },
+
+    {question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?", 
+    answers: ["if(i!=5)", "if(i<>5)", "if i<>5", "if i=!5 then)"],
+    correctAnswer: "if(i!=5)"
+
+    },
     
     ];
 
 let answerKey = ["a", "b", "c", "a"];
 
-
+// event listener for start button
 startButton.addEventListener("click", startQuiz);
+
+// event listener for answer choices
 for(i=0; i<answerChoices.length; i++) {
     answerChoices[i].addEventListener("click", checkAnswer);
 }
-function checkAnswer(event) {
-    console.log(event.target.textContent);
 
-}
+
+// function checkAnswer(event) {
+//     console.log(event.target.textContent);
+
+//     if (event.target.textContent ===quizQuestions.correctAnswer[i].correctAnswer) {
+//         console.log("Correct!");
+//     }
+//     else {console.log("Nope!");
+//     }
+// }
 
 
 function startQuiz (){
