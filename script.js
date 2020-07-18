@@ -1,7 +1,7 @@
 // STEPS FOR JS FILE
 
 // set variables for time : let timeEl = 
-const timeEl = document.querySelector("#timer");
+let timeEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-button");
 const highScoreButton = document.querySelector("#button-high-score");
 let userInitials = document.querySelector("#user-initials");
@@ -12,31 +12,37 @@ const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
 
-let startTime = 45;
+let startTime = 60;
+
+
 // Quiz questions taken from: https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 let quizQuestions = [
-    {question: "Inside which HTML element do we put the JavaScript?", 
-    answers: ["<script>", "<javascript>", "<js>", "<scripting>"], 
-    correctAnswer: "<script>"      
+    {
+        question: "Inside which HTML element do we put the JavaScript?",
+        answers: ["<script>", "<javascript>", "<js>", "<scripting>"],
+        correctAnswer: "<script>"
     },
 
-    {question: "Where is the correct place to insert a JavaScript?", 
-    answers: ["the <head> section", "the <body> section", "the <mid> section",  "either the <head> or the <body> section"], 
-    correctAnswer: "the <body> section" 
+    {
+        question: "Where is the correct place to insert a JavaScript?",
+        answers: ["the <head> section", "the <body> section", "the <mid> section", "either the <head> or the <body> section"],
+        correctAnswer: "the <body> section"
     },
 
-    {question: "How do you write 'Hello World' in an alert box?", 
-    answers: ["alertBox('Hello World')","msgBox('Hello World')", "alert('Hello World')", "msg('Hello World')"],
-    correctAnswer: "alert('Hello World')"
+    {
+        question: "How do you write 'Hello World' in an alert box?",
+        answers: ["alertBox('Hello World')", "msgBox('Hello World')", "alert('Hello World')", "msg('Hello World')"],
+        correctAnswer: "alert('Hello World')"
     },
 
-    {question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?", 
-    answers: ["if(i!=5)", "if(i<>5)", "if i<>5", "if i=!5 then)"],
-    correctAnswer: "if(i!=5)"
+    {
+        question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5?",
+        answers: ["if(i!=5)", "if(i<>5)", "if i<>5", "if i=!5 then)"],
+        correctAnswer: "if(i!=5)"
 
     },
-    
-    ];
+
+];
 
 let answerKey = ["a", "b", "c", "a"];
 
@@ -44,7 +50,7 @@ let answerKey = ["a", "b", "c", "a"];
 startButton.addEventListener("click", startQuiz);
 
 // event listener for answer choices
-for(i=0; i<answerChoices.length; i++) {
+for (i = 0; i < answerChoices.length; i++) {
     answerChoices[i].addEventListener("click", checkAnswer);
 }
 
@@ -53,31 +59,35 @@ function checkAnswer(event) {
     console.log(event.target.textContent);
     console.log(quizQuestions[currentQuestionIndex].correctAnswer);
 
-    if (event.target.textContent ===quizQuestions[currentQuestionIndex].correctAnswer) {
+    if (event.target.textContent === quizQuestions[currentQuestionIndex].correctAnswer) {
         console.log("Correct!");
+        setNextQuestion();
     }
-    else {console.log("Nope!");
-    startTime = startTime - 10;
+    else {
+        console.log("Nope!");
+        startTime = startTime - 10;
+        setNextQuestion();
 
     }
 }
 
 
-function startQuiz (){
-console.log("Started");
-startButton.classList.add("hide");
-questionToAsk.classList.remove("hide");
-console.log(answerButtonEl);
-answerButtonEl.classList.remove("hide");
-currentQuestionIndex = 0;
-setNextQuestion();
-console.log(currentQuestionIndex);
-console.log(quizQuestions[currentQuestionIndex].question);
-runTimer();
+function startQuiz() {
+    console.log("Started");
+    startButton.classList.add("hide");
+    questionToAsk.classList.remove("hide");
+    console.log(answerButtonEl);
+    answerButtonEl.classList.remove("hide");
+    currentQuestionIndex = 0;
+    setFirstQuestion();
+    console.log(currentQuestionIndex);
+    console.log(quizQuestions[currentQuestionIndex].question);
+    timeEl.innerHTML = startTime;
+    runTimer();
 
 }
 
-function setNextQuestion() {
+function setFirstQuestion() {
     showQuestion(quizQuestions[currentQuestionIndex].question);
 
 }
@@ -85,32 +95,40 @@ function setNextQuestion() {
 function showQuestion(question) {
     questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
     console.log(answerButtonEl.children.length);
-    for(i=0; i<answerButtonEl.children.length; i++) {
-    answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
-}
+    for (i = 0; i < answerButtonEl.children.length; i++) {
+        answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
+    }
 
 }
- 
-
-
-
-// function setNextQuestion (){
 
 
 
 
-// }
+function setNextQuestion() {
+    if (currentQuestionIndex < (quizQuestions.length - 1) && startTime > 0) {
+        currentQuestionIndex++;
+        showQuestion(quizQuestions[currentQuestionIndex].question);
+
+    }
+    else {
+        finalMessage.classList.remove("hide");
+        questionToAsk.classList.add("hide");
+        answerButtonEl.classList.add("hide");
+    }
+}
 
 
 function runTimer() {
-    var startTimer = setInterval(function(){
-        console.log(startTime);
+    var startTimer = setInterval(function () {
         startTime--
+        timeEl.innerHTML = startTime;
         if (startTime === 0) {
-          alert("Time's up!");
-          clearInterval(startTimer);
+            finalMessage.classList.remove("hide");
+            questionToAsk.classList.add("hide");
+            answerButtonEl.classList.add("hide");
+            clearInterval(startTimer);
         }
-      }, 1000);
+    }, 1000);
 }
 
 // highScoreButton.addEventListener("click", function() {
