@@ -7,7 +7,7 @@ $(document).ready(function () {
     let finalMessage = document.querySelector(".final-message");
     let userScore = document.querySelector("#score");
     let checkerEl = document.querySelector(".yay-nay");
-    let highScoresEl = document.querySelector(".high-scores-list");
+    let highScoresEl = document.querySelector("#high-scores-list");
     let highScores = document.querySelector("#high-scores");
     let userInitials = document.querySelector("#initials-input");
     let questionToAsk = document.querySelector("#quiz-questions");
@@ -25,7 +25,7 @@ $(document).ready(function () {
     // let correctAnswer = document.querySelector("#got-it");
     // let wrongAnswer = document.querySelector("#nope");
     let scoreList = [];
-    let timeLeft = 60;
+    let timeLeft = 45;
     let startTimer;
 
     // QUIZ CONTENT
@@ -82,7 +82,8 @@ $(document).ready(function () {
         highScoreButton.classList.remove("hide");
         directionsEl.classList.remove("hide");
         backBtn.classList.add("hide");
-        highScoresEl.style.display = ("none");
+        highScoresEl.classList.add("hide");
+        highScoresEl.innerHTML = "";
     }
 
     // Start the Quiz
@@ -158,6 +159,10 @@ $(document).ready(function () {
             if (timeLeft === 0 || currentQuestionIndex === (quizQuestions.length)) {
                 endScreen();
             }
+            if (timeLeft < 0 || currentQuestionIndex === (quizQuestions.length)) {
+                timeLeft = 0;
+                endScreen();
+            }
         }, 1000);
     }
 
@@ -166,6 +171,7 @@ $(document).ready(function () {
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
         timeEl.classList.add("hide");
+        backBtn.classList.remove("hide");
         finalMessage.classList.remove("hide");
         userScore.textContent = timeLeft;
         clearInterval(startTimer);
@@ -221,7 +227,3 @@ $(document).ready(function () {
         highScoresEl.innerHTML = "";
     }
 });
-
-// click clear scores button
-    // clear the high scores array/object
-
