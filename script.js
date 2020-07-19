@@ -10,7 +10,10 @@ let answerChoices = document.querySelectorAll(".answer");
 const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
-let userScore;
+let scoreEl = document.querySelector(".score-area");
+let userScore = document.querySelector("#score");
+let correctAnswer = document.querySelector("#got-it");
+let wrongAnswer = document.querySelector("#nope");
 
 let timeLeft = 60;
 let startTimer;
@@ -86,12 +89,12 @@ function checkAnswer(event) {
     console.log(quizQuestions[currentQuestionIndex].correctAnswer);
 
     if (event.target.textContent === quizQuestions[currentQuestionIndex].correctAnswer) {
-        console.log("Correct!");
+        console.log(correctAnswer.innerHTML);
         setNextQuestion();
     }
     else {
-        console.log("Nope!");
         timeLeft = timeLeft - 10;
+        console.log(wrongAnswer.innerHTML);
         setNextQuestion();
     }
 }
@@ -104,9 +107,11 @@ function setNextQuestion() {
 
     }
     else {
-        finalMessage.classList.remove("hide");
+        // finalMessage.classList.remove("hide");
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
+        scoreEl.classList.remove("hide");
+        userScore.textContent = timeLeft;
         clearInterval(startTimer);
     }
 }
@@ -120,8 +125,8 @@ function runTimer() {
             questionToAsk.classList.add("hide");
             answerButtonEl.classList.add("hide");
             clearInterval(startTimer);
-            userScore.textContent = timeLeft;
-            console.log(userScore.textContent);
+            // userScore.textContent = timeLeft;
+            // console.log(userScore.textContent);
 
         }
     }, 1000);
