@@ -19,6 +19,7 @@ $(document).ready(function () {
     let highScoreButton = document.querySelector("#button-high-scores");
     let startButton = document.querySelector("#start-button");
     let backBtn = document.querySelector("#back-button");
+    let clearButton = document.querySelector("#clear-button");
 
     // let currentQuestion;
     // let correctAnswer = document.querySelector("#got-it");
@@ -57,19 +58,22 @@ $(document).ready(function () {
     ];
 
     // EVENT LISTENERS
-    // for start button
+    // for Start Button
     startButton.addEventListener("click", startQuiz);
 
-    // for answer choices
+    // for Answer Choices
     for (i = 0; i < answerChoices.length; i++) {
         answerChoices[i].addEventListener("click", checkAnswer);
     }
 
-    // for high scores button
+    // for High Scores Button
     highScoreButton.addEventListener("click", showHighScores);
 
-    // for back button
+    // for Back Button
     backBtn.addEventListener("click", setQuiz)
+
+    // for Clear Button
+    clearButton.addEventListener("click", clearHighScores)
 
     // FUNCTIONS
     // Reset the Quiz - when "Go Back" is clicked
@@ -137,11 +141,9 @@ $(document).ready(function () {
 
     // Set the next question
     function setNextQuestion() {
-        console.log(timeLeft);
         if (currentQuestionIndex < (quizQuestions.length - 1)) {
             currentQuestionIndex++;
             showQuestion(quizQuestions[currentQuestionIndex].question);
-
         }
         else {
             endScreen();
@@ -205,11 +207,18 @@ $(document).ready(function () {
         addScores();
         highScoresEl.classList.remove("hide");
         backBtn.classList.remove("hide");
+        clearButton.classList.remove("hide");
         highScoreButton.classList.add("hide");
         startButton.classList.add("hide");
         userScore.classList.add("hide");
         finalMessage.classList.add("hide");
         directionsEl.classList.add("hide");
+    }
+
+    // Clear High Scores
+    function clearHighScores() {
+        localStorage.clear;
+        highScoresEl.innerHTML = "";
     }
 });
 
