@@ -7,7 +7,7 @@ $(document).ready(function () {
     let finalMessage = document.querySelector(".final-message");
     let userScore = document.querySelector("#score");
     let checkerEl = document.querySelector(".yay-nay");
-    let highScoresEl = document.querySelector("#high-scores-list");
+    let highScoresEl = document.querySelector(".scores-list");
     let highScores = document.querySelector("#high-scores");
     let userInitials = document.querySelector("#initials-input");
     let questionToAsk = document.querySelector("#quiz-questions");
@@ -21,9 +21,10 @@ $(document).ready(function () {
     let backBtn = document.querySelector("#back-button");
     let clearButton = document.querySelector("#clear-button");
 
-    // let currentQuestion;
-    // let correctAnswer = document.querySelector("#got-it");
-    // let wrongAnswer = document.querySelector("#nope");
+    let currentQuestion;
+    let correctAnswer = document.querySelector("#got-it");
+    let wrongAnswer = document.querySelector("#nope");
+    
     let scoreList = [];
     let timeLeft = 45;
     let startTimer;
@@ -78,6 +79,7 @@ $(document).ready(function () {
     // FUNCTIONS
     // Reset the Quiz - when "Go Back" is clicked
     function setQuiz() {
+        timeLeft = 45;
         startButton.classList.remove("hide");
         highScoreButton.classList.remove("hide");
         directionsEl.classList.remove("hide");
