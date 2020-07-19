@@ -18,13 +18,10 @@ body {
     border-color: blue;
 }
 
-.button-row {
+/* #answers-list {
     text-align: center;
-}
+} */
 
-#answers-list {
-    text-align: center;
-}
 ul.answer-button {
     min-height: 20px;
     min-width: 40px;
@@ -39,4 +36,13 @@ li.btn-light {
 
 div.score-area {
     text-align: center;
+}
+/* 
+#score {
+    font-size: 15px;
+} */
+
+#initials-input {
+    min-height: 20px;
+    min-width: 40px;
 }

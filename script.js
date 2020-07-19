@@ -66,6 +66,7 @@ function startQuiz() {
     directionsEl.classList.add("hide");
     questionToAsk.classList.remove("hide");
     answerButtonEl.classList.remove("hide");
+    timeEl.classList.remove("hide");
     currentQuestionIndex = 0;
     setFirstQuestion();
     timeEl.innerHTML = timeLeft;
@@ -83,7 +84,7 @@ function setFirstQuestion() {
 function showQuestion(question) {
     questionToAsk.innerHTML = quizQuestions[currentQuestionIndex].question;
     for (i = 0; i < answerButtonEl.children.length; i++) {
-        answerButtonEl.children[i].children[0].textContent = quizQuestions[currentQuestionIndex].answers[i];
+        answerButtonEl.children[i].textContent = quizQuestions[currentQuestionIndex].answers[i];
     }
 }
 
