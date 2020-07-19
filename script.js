@@ -1,5 +1,6 @@
 
 // set global variables
+let directionsEl = document.querySelector("#directions");
 let timeEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-button");
 const highScoreButton = document.querySelector("#button-high-score");
@@ -14,6 +15,9 @@ let scoreEl = document.querySelector(".score-area");
 let userScore = document.querySelector("#score");
 let correctAnswer = document.querySelector("#got-it");
 let wrongAnswer = document.querySelector("#nope");
+// let yayNay = document.querySelector(".yay-nay");
+let highScoresEl = document.querySelector("high-scores");
+
 
 let timeLeft = 60;
 let startTimer;
@@ -59,11 +63,11 @@ for (i = 0; i < answerChoices.length; i++) {
 // Start the Quiz
 function startQuiz() {
     startButton.classList.add("hide");
+    directionsEl.classList.add("hide");
     questionToAsk.classList.remove("hide");
     answerButtonEl.classList.remove("hide");
     currentQuestionIndex = 0;
     setFirstQuestion();
-    console.log(quizQuestions[currentQuestionIndex].question);
     timeEl.innerHTML = timeLeft;
     runTimer();
 
@@ -85,16 +89,18 @@ function showQuestion(question) {
 
 // Check Answers
 function checkAnswer(event) {
-    console.log(event.target.textContent);
-    console.log(quizQuestions[currentQuestionIndex].correctAnswer);
 
     if (event.target.textContent === quizQuestions[currentQuestionIndex].correctAnswer) {
-        console.log(correctAnswer.innerHTML);
+        setTimeout(function(){
+            correctAnswer.style.display = 'none';
+        },1000);
         setNextQuestion();
     }
     else {
         timeLeft = timeLeft - 10;
-        console.log(wrongAnswer.innerHTML);
+        setTimeout(function(){
+            wrongAnswer.style.display = 'none';
+            },1000);
         setNextQuestion();
     }
 }
@@ -110,6 +116,7 @@ function setNextQuestion() {
         // finalMessage.classList.remove("hide");
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
+        timeEl.classList.add("hide");
         scoreEl.classList.remove("hide");
         userScore.textContent = timeLeft;
         clearInterval(startTimer);

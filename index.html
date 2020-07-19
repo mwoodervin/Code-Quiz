@@ -12,29 +12,41 @@
 </head>
 
 <body>
-    <header class="container">
-        <h1>Welcome to Code Quiz</h1>
-        <p>Test your JavaScript knowledge with this five-question quiz.</p>
-        <p>Click "Start Quiz" to begin. You will be given 60 seconds to complete the quiz.</p>
-        <p>Each incorrect answer will result in a 10-second deduction from your time. Good luck!</p>
-    </header>
-    <br>
 
-    <main class="container button-row">
-        <!-- Row for buttons to start, see high score and for timer-->
+    <!-- Row for buttons to start, see high score and for timer-->
+    <header class="container-fluid button-row">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <button id="start-button">Start Quiz</button>
+                <div id="timer" class="btn btn-light hide">60</div>
+
             </div>
             <!-- Timer button -->
-            <div class="col-lg-4 btn">
+            <!-- <div class="col-lg-4">
                 <div id="timer" class="btn btn-light">60</div>
-            </div>
+            </div> -->
             <!-- high score button -->
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <button id="button-high-scores">High Scores</button>
             </div>
         </div>
+    </header>
+    <br>
+    <br>
+
+    <section class="container" id="directions">
+        <div class="row">
+            <div class=col-lg-3></div>
+            <div class=col-lg-6>
+            <h1>Welcome to Code Quiz</h1>
+            <p>Test your JavaScript knowledge with this five-question quiz.</p>
+            <p>Click "Start Quiz" to begin. You will be given 60 seconds to complete the quiz.</p>
+            <p>Each incorrect answer will result in a 10-second deduction from your time. Good luck!</p>
+        </div>
+        </div>
+    </section>
+
+    <main>
         <!-- Container for the questions to ask with hide/show when click start -->
         <div class="container">
             <div class="row">
@@ -43,7 +55,7 @@
                 <div class="col-lg-4 hide" id="quiz-questions">Quiz Questions will Appear in this Area</div>
 
                 <div class="container" id="answers-list">
-                    <ul class="px-0 py-0 nobullets answer-button hide">
+                    <ul class="list-group list-group-flush nobullets answer-button hide">
                         <li type="button" class="btn btn-light answer-button-0">
                             <span class="answer"></span>
                         </li>
@@ -64,37 +76,28 @@
             </div>
         </div>
 
-        <!-- Message displayed when time is up -->
+        <!-- div for Score display and Initials Input -->
         <div class="container">
             <div class="row">
-                <div class= hide id="final-message">
-                    <p>Time's Up! Great Job!</p>
-                    <div id="user-initials">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class= "hide score-area">
+                <div class="hide score-area">
                     <p>Done! Your score is</p>
-                        <span id = "score"></span>
-                <!-- </div>         -->
-                    
-                <!-- <div class="hide" id="user-initials"> -->
+                    <span id="score"></span>
                     <p>Enter your initials for high score:</p>
-                    <span class="btn" id="initials-input"></span>
-                <!-- </div> -->
+                    <span class="btn btn-light" id="initials-input"></span>
 
+                </div>
             </div>
-        </div>
 
-        <div class="container hide">
-            <p id = "got-it">Yay!</p>
-            <p id = "nope">Oops!</p>
-        </div>
+            <div class="container hide">
+                <div class="row">
+                    <ul id="high-scores"></ul>
+                </div>
+            </div>
+
+            <div class="container hide yay-nay">
+                <p id="got-it">Yay!</p>
+                <p id="nope">Oops!</p>
+            </div>
 
     </main>
 

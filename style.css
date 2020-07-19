@@ -5,7 +5,7 @@ body {
     font-family: 'Barlow Condensed', sans-serif;
 }
 
-header {
+#directions {
     text-align: center;
 }
 
@@ -34,5 +34,9 @@ li.btn-light {
 }
 
 .hide {
-    visibility: hidden;
+    display: none;
+}
+
+div.score-area {
+    text-align: center;
 }
