@@ -4,20 +4,21 @@ let directionsEl = document.querySelector("#directions");
 let timeEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-button");
 let highScoreButton = document.querySelector("#button-high-scores");
-let userInitials = document.querySelector("#user-initials");
+let userInitials = document.querySelector("#initials-input");
 let questionToAsk = document.querySelector("#quiz-questions");
 let answerButtonEl = document.querySelector(".answer-button");
 let answerChoices = document.querySelectorAll(".answer");
-const finalMessage = document.querySelector("#final-message");
 let currentQuestionIndex;
 let currentQuestion;
-let scoreEl = document.querySelector(".score-area");
+let finalMessage = document.querySelector(".final-message");
 let userScore = document.querySelector("#score");
 let correctAnswer = document.querySelector("#got-it");
 let wrongAnswer = document.querySelector("#nope");
 let checkerEl = document.querySelector(".yay-nay");
 let highScoresEl = document.querySelector(".high-scores-list");
+let highScores = document.querySelector("#high-scores");
 let backBtn = document.querySelector("#back-button");
+let scoreList = [];
 
 let timeLeft = 60;
 let startTimer;
@@ -51,17 +52,29 @@ let quizQuestions = [
     },
 
 ];
-
-// event listener for start button
+// EVENT LISTENERS
+// for start button
 startButton.addEventListener("click", startQuiz);
 
-// event listener for answer choices
+// for answer choices
 for (i = 0; i < answerChoices.length; i++) {
     answerChoices[i].addEventListener("click", checkAnswer);
 }
 
-// event listener for high scores button
+// for high scores button
 highScoreButton.addEventListener("click", showHighScores);
+
+// for back button
+backBtn.addEventListener("click", setQuiz)
+
+
+function setQuiz() {
+    startButton.classList.remove("hide");
+    highScoreButton.classList.remove("hide");
+    directionsEl.classList.remove("hide"); 
+    backBtn.classList.add("hide");
+    highScoresEl.style.display = ("none"); 
+}
 
 // Start the Quiz
 function startQuiz() {
@@ -74,7 +87,6 @@ function startQuiz() {
     setFirstQuestion();
     timeEl.innerHTML = timeLeft;
     runTimer();
-
 }
 
 // Set the first question
@@ -130,7 +142,7 @@ function setNextQuestion() {
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
         timeEl.classList.add("hide");
-        scoreEl.classList.remove("hide");
+        finalMessage.classList.remove("hide");
         userScore.textContent = timeLeft;
         clearInterval(startTimer);
     }
@@ -149,17 +161,54 @@ function runTimer() {
     }, 1000);
 }
 
-// Show High Scores function
+
+// Function to Store Scores
+
+function storeScores() {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+// function to Add Scores to the List
+    function addScores(event) {
+    event.preventDefault();
+    
+        highScoresEl.style.display = "block";
+    
+        let init = userInitials.children[0].value.toUpperCase();
+        scoreList.push({ initials: init, score: userScore.textContent });
+    
+        // sort scores
+        scoreList = scoreList.sort((a, b) => {
+            if (a.score < b.score) {
+              return 1;
+            } else {   
+              return -1;
+            }
+          });
+        
+        highScores.innerHTML="";
+        for (let i = 0; i < scoreList.length; i++) {
+            let li = document.createElement("li");
+            li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+            highScores.append(li);
+        }
+    
+        // Add to local storage
+        storeScores();
+        // displayScores();
+    }
 
 function showHighScores() {
     console.log("clicked");
+    addScores();
     highScoresEl.classList.remove("hide");
     backBtn.classList.remove("hide");
     startButton.classList.add("hide");
     userScore.classList.add("hide");
-    scoreEl.classList.add("hide");
+    finalMessage.classList.add("hide");
     directionsEl.classList.add("hide");
-    
+
+
 };
 
 // highScoreButton.addEventListener("click", function() {
