@@ -3,7 +3,7 @@
 let directionsEl = document.querySelector("#directions");
 let timeEl = document.querySelector("#timer");
 let startButton = document.querySelector("#start-button");
-const highScoreButton = document.querySelector("#button-high-score");
+let highScoreButton = document.querySelector("#button-high-scores");
 let userInitials = document.querySelector("#user-initials");
 let questionToAsk = document.querySelector("#quiz-questions");
 let answerButtonEl = document.querySelector(".answer-button");
@@ -16,8 +16,8 @@ let userScore = document.querySelector("#score");
 let correctAnswer = document.querySelector("#got-it");
 let wrongAnswer = document.querySelector("#nope");
 let checkerEl = document.querySelector(".yay-nay");
-let highScoresEl = document.querySelector("high-scores");
-
+let highScoresEl = document.querySelector(".high-scores-list");
+let backBtn = document.querySelector("#back-button");
 
 let timeLeft = 60;
 let startTimer;
@@ -59,6 +59,9 @@ startButton.addEventListener("click", startQuiz);
 for (i = 0; i < answerChoices.length; i++) {
     answerChoices[i].addEventListener("click", checkAnswer);
 }
+
+// event listener for high scores button
+highScoreButton.addEventListener("click", showHighScores);
 
 // Start the Quiz
 function startQuiz() {
@@ -124,7 +127,6 @@ function setNextQuestion() {
 
     }
     else {
-        // finalMessage.classList.remove("hide");
         questionToAsk.classList.add("hide");
         answerButtonEl.classList.add("hide");
         timeEl.classList.add("hide");
@@ -143,12 +145,22 @@ function runTimer() {
             questionToAsk.classList.add("hide");
             answerButtonEl.classList.add("hide");
             clearInterval(startTimer);
-            // userScore.textContent = timeLeft;
-            // console.log(userScore.textContent);
-
         }
     }, 1000);
 }
+
+// Show High Scores function
+
+function showHighScores() {
+    console.log("clicked");
+    highScoresEl.classList.remove("hide");
+    backBtn.classList.remove("hide");
+    startButton.classList.add("hide");
+    userScore.classList.add("hide");
+    scoreEl.classList.add("hide");
+    directionsEl.classList.add("hide");
+    
+};
 
 // highScoreButton.addEventListener("click", function() {
 //     if (timeEl.innerHTML > the current high score) {
