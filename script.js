@@ -110,8 +110,9 @@ function checkAnswer(event) {
         p.textContent = "Oooops!"
 
     }
-
-    setNextQuestion();
+    setTimeout(function() {
+        setNextQuestion()
+    },1000);
 
 }
 
