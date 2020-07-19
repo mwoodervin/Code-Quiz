@@ -41,10 +41,10 @@ li.btn-light {
 div.score-area {
     text-align: center;
 }
-/* 
+
 #score {
-    font-size: 15px;
-} */
+    padding: 10px;
+}
 
 #initials-input {
     min-height: 20px;
