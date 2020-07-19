@@ -9,8 +9,12 @@ body {
     text-align: center;
 }
 
-#quiz-questions {
+#quiz-questions  {
     text-align: center;
+}
+#answers-list {
+    padding: 5px;
+    text-align: left;
 }
 
 #timer {
@@ -18,9 +22,9 @@ body {
     border-color: blue;
 }
 
-/* #answers-list {
+.yay-nay {
     text-align: center;
-} */
+}
 
 ul.answer-button {
     min-height: 20px;

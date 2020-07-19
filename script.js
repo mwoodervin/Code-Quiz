@@ -15,7 +15,7 @@ let scoreEl = document.querySelector(".score-area");
 let userScore = document.querySelector("#score");
 let correctAnswer = document.querySelector("#got-it");
 let wrongAnswer = document.querySelector("#nope");
-// let yayNay = document.querySelector(".yay-nay");
+let checkerEl = document.querySelector(".yay-nay");
 let highScoresEl = document.querySelector("high-scores");
 
 
@@ -91,19 +91,28 @@ function showQuestion(question) {
 // Check Answers
 function checkAnswer(event) {
 
+    event.preventDefault();
+
+    checkerEl.style.display = "block";
+    let p = document.createElement("p");
+    checkerEl.append(p);
+
+    setTimeout(function(){
+        p.style.display = "none";
+    },1000);
+
     if (event.target.textContent === quizQuestions[currentQuestionIndex].correctAnswer) {
-        setTimeout(function(){
-            correctAnswer.style.display = 'none';
-        },1000);
-        setNextQuestion();
+       p.textContent = "Yay!";
+
     }
     else {
         timeLeft = timeLeft - 10;
-        setTimeout(function(){
-            wrongAnswer.style.display = 'none';
-            },1000);
-        setNextQuestion();
+        p.textContent = "Oooops!"
+
     }
+
+    setNextQuestion();
+
 }
 
 // Set the next question
