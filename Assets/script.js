@@ -192,7 +192,7 @@ $(document).ready(function () {
         let init = userInitials.children[0].value.toUpperCase();
         scoreList.push({ initials: init, score: userScore.textContent });
 
-        // sort scores
+        // sort scores; worked with a classmate on this - not tested since code has other errors
         scoreList = scoreList.sort((a, b) => {
             if (a.score < b.score) {
                 return 1;
