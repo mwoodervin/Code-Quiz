@@ -1,7 +1,9 @@
-# Code-Quiz
+# JavaScript Code Quiz
 
 ## Description
 - This is a timed quiz that finds out what you know about JavaScript. The quiz consists of 5 questions (more can be added) and the user is given 45 seconds to answer them.
+
+Link to application:  https://mwoodervin.github.io/Code-Quiz/
 
 - The initial screen provides directions for starting the quiz.
 
