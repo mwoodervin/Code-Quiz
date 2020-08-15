@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400&display=swap');  
 
 body {
-    background-color: rgb(58, 126, 153);
+    background-color: #495c71;
     font-family: 'Barlow Condensed', sans-serif;
 }
 
 #directions {
     text-align: center;
+    color: white;
 }
 
 #quiz-questions  {
     text-align: center;
+    color: white;
 }
 #answers-list {
     padding: 5px;
