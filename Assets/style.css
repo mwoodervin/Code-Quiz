@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400&display=swap');  
 
 body {
-    background-color: #495c71;
+    background-color: #78818b;
     font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
 }
 
 #directions {
