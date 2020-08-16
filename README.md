@@ -22,3 +22,5 @@
 - From there, the user can choose to restart the quiz or to clear the high scores and then restart the quiz.
 
 
+## Licence
+[![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/mwoodervin/Code-Quiz/blob/master/LICENSE)
